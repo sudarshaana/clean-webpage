@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "Clean Webpage",
   "version": "1.0",
-  "description": "Remove specific elements from engnovate.com and other websites",
+  "description": "Remove specific elements from supported websites. Currently supports engnovate.com and can be easily extended to support other websites.",
   "permissions": [
     "activeTab",
     "storage",
@@ -15,9 +15,10 @@
       "128": "icons/icon128.png"
     }
   },
+  "options_page": "options.html",
   "content_scripts": [
     {
-      "matches": ["*://*.engnovate.com/*"],
+      "matches": ["<all_urls>"],
       "js": ["content.js"]
     }
   ],

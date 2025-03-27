@@ -18,9 +18,19 @@ const websiteConfigs = {
 };
 
 // Function to get the current website's configuration
-function getCurrentWebsiteConfig() {
+async function getCurrentWebsiteConfig() {
   const hostname = window.location.hostname;
-  return websiteConfigs[hostname] || null;
+  const result = await chrome.storage.local.get('websiteConfigs');
+  const websiteConfigs = result.websiteConfigs || {};
+
+  // Find matching website configuration
+  for (const [website, config] of Object.entries(websiteConfigs)) {
+    if (hostname.includes(website)) {
+      return config;
+    }
+  }
+
+  return null;
 }
 
 // Function to remove elements based on selectors
@@ -41,10 +51,10 @@ function removeElements(selectors) {
 // Listen for messages from the background script
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === 'cleanPage') {
-    const config = getCurrentWebsiteConfig();
-
-    if (config) {
-      removeElements(config.selectors);
-    }
+    getCurrentWebsiteConfig().then(config => {
+      if (config) {
+        removeElements(config.selectors);
+      }
+    });
   }
 });
