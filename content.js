@@ -5,6 +5,9 @@ const websiteConfigs = {
       '.announcement-bar',
       '.entry-content',
       '.ielts-reading-comment-section',
+      '.ielts-writing-comment-section',
+      '.ielts-listening-comment-section',
+      '.ielts-speaking-comment-section',
       '.site-footer'
     ]
   }
