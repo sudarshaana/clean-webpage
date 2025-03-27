@@ -1,4 +1,4 @@
-# Clean Webpage Chrome Extension
+# Webpage Cleaner Chrome Extension
 
 A Chrome extension that removes specific elements from supported websites. Currently supports engnovate.com and can be easily extended to support other websites.
 
